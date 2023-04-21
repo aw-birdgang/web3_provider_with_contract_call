@@ -1,6 +1,6 @@
 name: web3
 description: Web3 Ethereum, Etherjs and Wallet Connect wrapper for Flutter Web. Made especially for developing Dapp.
-version: 1.0.0
+version: 2.1.9
 repository:
 issue_tracker:
 
