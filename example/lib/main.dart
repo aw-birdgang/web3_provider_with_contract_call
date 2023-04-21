@@ -209,7 +209,7 @@ class Home extends StatelessWidget {
               Container(height: 10),
               TextButton(
                   onPressed: h.testProvider,
-                  child: Text('test rpc provider')),
+                  child: Text('test rpc providers')),
               Container(height: 10),
               TextButton(onPressed: h.test, child: Text('test')),
               Container(height: 10),

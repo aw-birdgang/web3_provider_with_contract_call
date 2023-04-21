@@ -102,16 +102,16 @@ class WalletConnectProvider extends Interop<_WalletConnectProviderImpl> {
   const WalletConnectProvider._(_WalletConnectProviderImpl impl)
       : super.internal(impl);
 
-  /// Accounts which is at provider disposal.
+  /// Accounts which is at providers disposal.
   List<String> get accounts => impl.accounts;
 
   /// Main network chain id.
   String get chainId => impl.chainId;
 
-  /// `true` if [this] is connected successfully to rpc provider.
+  /// `true` if [this] is connected successfully to rpc providers.
   bool get connected => impl.connected;
 
-  /// `true` if [this] is connecting successfully to rpc provider.
+  /// `true` if [this] is connecting successfully to rpc providers.
   bool get isConnecting => impl.isConnecting;
 
   /// Chain id and rpc url map.
@@ -121,10 +121,10 @@ class WalletConnectProvider extends Interop<_WalletConnectProviderImpl> {
   /// Main network rpc url.
   String get rpcUrl => impl.rpcUrl;
 
-  /// Connected wallet metadata, contains serveral information about connected provider.
+  /// Connected wallet metadata, contains serveral information about connected providers.
   WalletMeta get walletMeta => WalletMeta._(impl.walletMeta);
 
-  /// Enable session and try to connect to provider. (triggers QR Code modal)
+  /// Enable session and try to connect to providers. (triggers QR Code modal)
   ///
   /// ---
   ///
@@ -135,7 +135,7 @@ class WalletConnectProvider extends Interop<_WalletConnectProviderImpl> {
   /// ```
   Future<void> connect() => promiseToFuture(callMethod(impl, 'enable', []));
 
-  /// Close provider session.
+  /// Close providers session.
   Future<void> disconnect() =>
       promiseToFuture(callMethod(impl, 'disconnect', []));
 
@@ -170,20 +170,20 @@ class WalletConnectProvider extends Interop<_WalletConnectProviderImpl> {
   ///
   /// This event is emitted when it first becomes able to submit RPC requests to a chain.
   ///
-  /// We recommend using a connect event handler and the [Ethereum.isConnected] method in order to determine when/if the provider is connected.
+  /// We recommend using a connect event handler and the [Ethereum.isConnected] method in order to determine when/if the providers is connected.
   onConnect(void Function() listener) => on('connect', listener);
 
   /// Add a [listener] to be triggered for each disconnect event.
   ///
   /// This event is emitted if it becomes unable to submit RPC requests to any chain. In general, this will only happen due to network connectivity issues or some unforeseen error.
   ///
-  /// Once disconnect has been emitted, the provider will not accept any new requests until the connection to the chain has been re-restablished, which requires reloading the page. You can also use the [Ethereum.isConnected] method to determine if the provider is disconnected.
+  /// Once disconnect has been emitted, the providers will not accept any new requests until the connection to the chain has been re-restablished, which requires reloading the page. You can also use the [Ethereum.isConnected] method to determine if the providers is disconnected.
   onDisconnect(void Function(int code, String reason) listener) =>
       on('disconnect', listener);
 
   /// Add a [listener] to be triggered for each message event [type].
   ///
-  /// The MetaMask provider emits this event when it receives some message that the consumer should be notified of. The kind of message is identified by the type string.
+  /// The MetaMask providers emits this event when it receives some message that the consumer should be notified of. The kind of message is identified by the type string.
   ///
   /// RPC subscription updates are a common use case for the message event. For example, if you create a subscription using `eth_subscribe`, each subscription update will be emitted as a message event with a type of `eth_subscription`.
   onMessage(void Function(String type, dynamic data) listener) => on(
@@ -249,7 +249,7 @@ class WalletConnectProvider extends Interop<_WalletConnectProviderImpl> {
       );
 }
 
-/// Metadata information of specific wallet provider.
+/// Metadata information of specific wallet providers.
 class WalletMeta extends Interop<_WalletMetaImpl> {
   const WalletMeta._(_WalletMetaImpl impl) : super.internal(impl);
 

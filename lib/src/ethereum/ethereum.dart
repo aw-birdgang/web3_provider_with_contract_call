@@ -54,17 +54,17 @@ class CurrencyParams extends Interop<_CurrencyParamsImpl> {
 
 /// A Dart Ethereum Provider API for consistency across clients and applications.
 class Ethereum extends Interop<_EthereumImpl> {
-  /// Ethereeum provider api used in Binance Chain Wallet.
+  /// Ethereeum providers api used in Binance Chain Wallet.
   static Ethereum get binanceChain => Ethereum._(_binanceChain!);
 
-  /// Modern Ethereum provider api, injected by many famous environment such as `MetaMask` or `TrustWallet`.
+  /// Modern Ethereum providers api, injected by many famous environment such as `MetaMask` or `TrustWallet`.
   static Ethereum get ethereum => Ethereum._(_ethereum!);
 
   /// Getter for boolean to detect Ethereum object support. without calling itself to prevent js undefined error.
   static bool get isSupported =>
       hasProperty(_window, 'ethereum') || hasProperty(_window, 'BinanceChain');
 
-  /// Getter for default Ethereum provider object, cycles through available injector in environment.
+  /// Getter for default Ethereum providers object, cycles through available injector in environment.
   static Ethereum? get provider => isSupported
       ? _ethereum != null
           ? Ethereum._(_ethereum!)
@@ -119,19 +119,19 @@ class Ethereum extends Interop<_EthereumImpl> {
   Future<int> getChainId() async =>
       int.parse((await request('eth_chainId')).toString());
 
-  /// Returns `true` if the provider is connected to the current chain, and `false` otherwise.
+  /// Returns `true` if the providers is connected to the current chain, and `false` otherwise.
   ///
   /// Note that this method has nothing to do with the user's accounts.
   ///
-  /// You may often encounter the word `connected` in reference to whether a web3 site can access the user's accounts. In the provider interface, however, `connected` and `disconnected` refer to whether the provider can make RPC requests to the current chain.
+  /// You may often encounter the word `connected` in reference to whether a web3 site can access the user's accounts. In the providers interface, however, `connected` and `disconnected` refer to whether the providers can make RPC requests to the current chain.
   ///
   /// ---
   ///
   /// ```dart
-  /// // To check if provider is connected to current chain
+  /// // To check if providers is connected to current chain
   /// ethereum!.isConnected() // true
   ///
-  /// // To check if provider is connected to current chain and connected to user accounts i.e. ready to use
+  /// // To check if providers is connected to current chain and connected to user accounts i.e. ready to use
   /// ethereum!.isConnected() && (await getAccounts()).isNotEmpty; // true
   /// ```
   bool isConnected() => impl.isConnected();
@@ -167,7 +167,7 @@ class Ethereum extends Interop<_EthereumImpl> {
   ///
   /// This event is emitted when it first becomes able to submit RPC requests to a chain.
   ///
-  /// We recommend using a connect event handler and the [Ethereum.isConnected] method in order to determine when/if the provider is connected.
+  /// We recommend using a connect event handler and the [Ethereum.isConnected] method in order to determine when/if the providers is connected.
   onConnect(void Function(ConnectInfo connectInfo) listener) =>
       on('connect', listener);
 
@@ -175,13 +175,13 @@ class Ethereum extends Interop<_EthereumImpl> {
   ///
   /// This event is emitted if it becomes unable to submit RPC requests to any chain. In general, this will only happen due to network connectivity issues or some unforeseen error.
   ///
-  /// Once disconnect has been emitted, the provider will not accept any new requests until the connection to the chain has been re-restablished, which requires reloading the page. You can also use the [Ethereum.isConnected] method to determine if the provider is disconnected.
+  /// Once disconnect has been emitted, the providers will not accept any new requests until the connection to the chain has been re-restablished, which requires reloading the page. You can also use the [Ethereum.isConnected] method to determine if the providers is disconnected.
   onDisconnect(void Function(ProviderRpcError error) listener) =>
       on('disconnect', (ProviderRpcError error) => listener(error));
 
   /// Add a [listener] to be triggered for each message event [type].
   ///
-  /// The MetaMask provider emits this event when it receives some message that the consumer should be notified of. The kind of message is identified by the type string.
+  /// The MetaMask providers emits this event when it receives some message that the consumer should be notified of. The kind of message is identified by the type string.
   ///
   /// RPC subscription updates are a common use case for the message event. For example, if you create a subscription using `eth_subscribe`, each subscription update will be emitted as a message event with a type of `eth_subscription`.
   onMessage(void Function(String type, dynamic data) listener) => on(
@@ -192,7 +192,7 @@ class Ethereum extends Interop<_EthereumImpl> {
   /// Remove all the listeners for the [eventName] events. If no [eventName] is provided, all events are removed.
   removeAllListeners([String? eventName]) => impl.removeAllListeners(eventName);
 
-  /// Use request to submit RPC requests with [method] and optionally [params] to Ethereum via MetaMask or provider that is currently using.
+  /// Use request to submit RPC requests with [method] and optionally [params] to Ethereum via MetaMask or providers that is currently using.
   ///
   /// Returns a Future of generic type that resolves to the result of the RPC method call.
   Future<T> request<T>(String method, [dynamic params]) async {
@@ -230,9 +230,9 @@ class Ethereum extends Interop<_EthereumImpl> {
   ///
   /// Returns List of accounts the node controls.
   ///
-  /// This method will only work if you’re using the injected provider from a application like Metamask, Status or TrustWallet.
+  /// This method will only work if you’re using the injected providers from a application like Metamask, Status or TrustWallet.
   ///
-  /// It doesn’t work if you’re connected to a node with a default Web3.js provider (WebsocketProvider, HttpProvidder and IpcProvider).
+  /// It doesn’t work if you’re connected to a node with a default Web3.js providers (WebsocketProvider, HttpProvidder and IpcProvider).
   ///
   /// ---
   ///
@@ -260,7 +260,7 @@ class Ethereum extends Interop<_EthereumImpl> {
       ? isConnected() && selectedAddress != null
           ? 'Ethereum: connected to chain ${int.tryParse(chainId)} with $selectedAddress'
           : 'Ethereum: not connected to chain ${int.tryParse(chainId)}'
-      : 'Ethereum: provider not supported';
+      : 'Ethereum: providers not supported';
 
   /// Creates a confirmation asking the user to add the specified chain with [chainId], [chainName], [nativeCurrency], and [rpcUrls] to MetaMask.
   ///

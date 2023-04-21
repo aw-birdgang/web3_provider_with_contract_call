@@ -30,7 +30,7 @@ class JsonRpcProvider extends Provider<_JsonRpcProviderImpl> {
   /// Rpc url that [this] is connected to.
   String get rpcUrl => _rpcUrl;
 
-  /// Returns a list of all account addresses managed by [this] provider.
+  /// Returns a list of all account addresses managed by [this] providers.
   Future<List<String>> listAccounts() async =>
       (await promiseToFuture<List>(callMethod(impl, 'listAccounts', [])))
           .cast<String>();
@@ -51,7 +51,7 @@ class Provider<T extends _ProviderImpl> extends Interop<T> {
   Future<Network> get ready async =>
       Network._(await call<_NetworkImpl>('ready'));
 
-  /// Call Ethers provider [method] with [args].
+  /// Call Ethers providers [method] with [args].
   ///
   /// To return the result of excecuting transaction, use [Provider.rawCall] instead.
   Future<T> call<T>(String method, [List<dynamic> args = const []]) async {
@@ -102,7 +102,7 @@ class Provider<T extends _ProviderImpl> extends Interop<T> {
   /// ---
   ///
   /// ```dart
-  /// final block = await provider!.getBlock(2000000);
+  /// final block = await providers!.getBlock(2000000);
   ///
   /// print(block);
   /// // Block: 2000000 0x9d2e2d20 mined at 2020-11-06T21:22:24.000 with diff 2
@@ -120,7 +120,7 @@ class Provider<T extends _ProviderImpl> extends Interop<T> {
   /// ---
   ///
   /// ```dart
-  /// final block = await provider!.getBlockWithTransaction(2000000);
+  /// final block = await providers!.getBlockWithTransaction(2000000);
   ///
   /// print(block);
   /// // Block: 2000000 0x9d2e2d20 mined at 2020-11-06T21:22:24.000 with diff 2
@@ -177,7 +177,7 @@ class Provider<T extends _ProviderImpl> extends Interop<T> {
   /// );
   ///
   /// // Query logs for specified filter
-  /// final logs = await provider!.getLogs(filter);
+  /// final logs = await providers!.getLogs(filter);
   ///
   /// print(logs.length); // 8
   /// print(logs.first); // Log: 3 topics from 0x2ad2e409
@@ -207,7 +207,7 @@ class Provider<T extends _ProviderImpl> extends Interop<T> {
   /// ---
   ///
   /// ```dart
-  /// final transaction = await provider!.getTransaction(
+  /// final transaction = await providers!.getTransaction(
   ///     '0x4e04def628cfd0c7786febaef8fbe832fc30eae54a4fba25bf46022c439ab39d');
   ///
   /// print(transaction); // Transaction: 0x4e04def6 from 0x1dFCD06a with value 0 and data 0x876cb21700000...
@@ -236,7 +236,7 @@ class Provider<T extends _ProviderImpl> extends Interop<T> {
   /// ---
   ///
   /// ```dart
-  /// final transaction = await provider!.getTransactionReceipt(
+  /// final transaction = await providers!.getTransactionReceipt(
   ///     '0x4e04def628cfd0c7786febaef8fbe832fc30eae54a4fba25bf46022c439ab39d');
   ///
   /// print(transaction); // TransactionReceipt: 0x4e04def6 from 0x1dFCD06a with 618 confirmations and 8 logs
@@ -298,7 +298,7 @@ class Provider<T extends _ProviderImpl> extends Interop<T> {
   /// ---
   ///
   /// ```dart
-  /// final supp = await provider!.rawCall(
+  /// final supp = await providers!.rawCall(
   ///   transactionRequest: TransactionRequest(
   ///     to: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee', // Some random ERC20 contract
   ///     data: '0x18160ddd', // Function signature of totalSupply()
@@ -331,7 +331,7 @@ class Provider<T extends _ProviderImpl> extends Interop<T> {
   /// The transaction must be signed, and be valid (i.e. the nonce is correct and the account has sufficient balance to pay for the transaction).
   ///
   /// ```dart
-  /// await provider!.sendTransaction("0xf86e808502540be400825208948ba1f109551bd432803012645ac136ddd64dba72880de0b6b3a764000080820a96a0f0c5bcb11e5a16ab116c60a0e5837ae98ec36e7f217740076572e8183002edd2a01ed1b4411c2840b9793e8be5415a554507f1ea320069be6dcecabd7b9097dbd4");
+  /// await providers!.sendTransaction("0xf86e808502540be400825208948ba1f109551bd432803012645ac136ddd64dba72880de0b6b3a764000080820a96a0f0c5bcb11e5a16ab116c60a0e5837ae98ec36e7f217740076572e8183002edd2a01ed1b4411c2840b9793e8be5415a554507f1ea320069be6dcecabd7b9097dbd4");
   /// ```
   Future<TransactionResponse> sendTransaction(String data) async =>
       TransactionResponse._(
@@ -346,7 +346,7 @@ class Provider<T extends _ProviderImpl> extends Interop<T> {
   /// ---
   ///
   /// ```dart
-  /// final transaction = await provider!.waitForTransaction('0x4e04def628cfd0c7786febaef8fbe832fc30eae54a4fba25bf46022c439ab39d');
+  /// final transaction = await providers!.waitForTransaction('0x4e04def628cfd0c7786febaef8fbe832fc30eae54a4fba25bf46022c439ab39d');
   ///
   /// print(transaction); // TransactionReceipt: 0x4e04def6 from 0x1dFCD06a with 618 confirmations and 8 logs
   /// print(transaction is TransactionReceipt); // true
@@ -370,7 +370,7 @@ class Provider<T extends _ProviderImpl> extends Interop<T> {
 ///
 /// This may also be used to wrap a standard [EIP-1193 Provider](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1193.md).
 class Web3Provider extends Provider<_Web3ProviderImpl> {
-  /// Create new [Web3Provider] instance from [provider] instance.
+  /// Create new [Web3Provider] instance from [providers] instance.
   ///
   /// ---
   ///

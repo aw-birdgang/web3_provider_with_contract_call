@@ -24,7 +24,7 @@ class Signer<T extends _SignerImpl> extends Interop<T> {
     }
   }
 
-  /// Connect this [Signer] to new [provider]. May simply throw an error if changing providers is not supported.
+  /// Connect this [Signer] to new [providers]. May simply throw an error if changing providers is not supported.
   Signer connect(Provider provider) => Signer._(impl.connect(provider.impl));
 
   /// Returns a Future that resolves to the account address.

@@ -42,7 +42,7 @@ class Mnemonic extends Interop<_MnemonicImpl> {
 
 /// The Wallet class inherits [Signer] and can sign transactions and messages using a private key as a standard Externally Owned Account (EOA).
 class Wallet extends Signer<_WalletImpl> {
-  /// Create a new Wallet instance for [privateKey] and optionally connected to the [provider].
+  /// Create a new Wallet instance for [privateKey] and optionally connected to the [providers].
   factory Wallet(String privateKey, [Provider? provider]) =>
       Wallet._(_WalletImpl(privateKey, provider?.impl));
 
@@ -75,7 +75,7 @@ class Wallet extends Signer<_WalletImpl> {
   /// The privateKey of this EOA
   String get privateKey => impl.privateKey;
 
-  /// The provider this wallet is connected to, which will be used for any Blockchain Methods methods. This can be `null`.
+  /// The providers this wallet is connected to, which will be used for any Blockchain Methods methods. This can be `null`.
   Provider? get provider =>
       impl.provider != null ? Provider._(impl.provider!) : null;
 

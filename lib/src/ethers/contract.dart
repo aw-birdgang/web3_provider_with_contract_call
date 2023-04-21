@@ -28,12 +28,12 @@ class Contract extends Interop<_ContractImpl> {
     );
   }
 
-  /// Instantiate [Contract] from [provider] for read-only contract calls.
+  /// Instantiate [Contract] from [providers] for read-only contract calls.
   factory Contract.fromProvider(
           String address, dynamic abi, Provider provider) =>
       Contract._(_ContractImpl(address, abi, provider.impl));
 
-  /// Instantiate [Contract] from [provider] for read-write contract calls.
+  /// Instantiate [Contract] from [providers] for read-write contract calls.
   factory Contract.fromSigner(String address, dynamic abi, Signer signer) =>
       Contract._(_ContractImpl(address, abi, signer.impl));
 
@@ -53,7 +53,7 @@ class Contract extends Interop<_ContractImpl> {
   /// `true` if connected to [Provider], `false` if connected to [Signer].
   bool get isReadOnly => signer == null;
 
-  /// If a [Provider] was provided to the constructor, this is that provider. If a [Signer] was provided that had a [Provider], this is that provider.
+  /// If a [Provider] was provided to the constructor, this is that providers. If a [Signer] was provided that had a [Provider], this is that providers.
   Provider get provider => Provider._(impl.provider);
 
   /// This is a Future that will resolve to the address [this] is attached to.
@@ -182,7 +182,7 @@ class Contract extends Interop<_ContractImpl> {
 
   @override
   String toString() =>
-      'Contract: $address connected to ${isReadOnly ? 'provider' : 'signer'}';
+      'Contract: $address connected to ${isReadOnly ? 'providers' : 'signer'}';
 
   Future<T> _call<T>(String method, [List<dynamic> args = const []]) async {
     try {
