@@ -6,7 +6,7 @@ import '../services/chain/repository_chian.dart';
 class ChainController extends ChangeNotifier {
 
   RepositoryChain repositoryHost = RepositoryChain();
-  List<Chain> listClients = [];
+  List<Chain> listChains = [];
   late Chain client;
   bool isLoading = true;
 
@@ -19,11 +19,11 @@ class ChainController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getClients() async {
+  void getChains() async {
     try {
       isLoading = true;
       notifyListeners();
-      listClients = await repositoryHost.getChains();
+      listChains = await repositoryHost.getChains();
       isLoading = false;
       notifyListeners();
     } catch (e) {
@@ -31,7 +31,7 @@ class ChainController extends ChangeNotifier {
     }
   }
 
-  void registerClient(Chain request, {response}) async {
+  void registerChain(Chain request, {response}) async {
     try {
       isLoading = true;
       notifyListeners();

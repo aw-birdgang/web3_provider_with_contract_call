@@ -1,8 +1,8 @@
-import 'package:web3_example/pages/account/components/chain_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../controllers/account_controller.dart';
+import '../../controllers/chain_controller.dart';
+import '../../pages/chain/components/chain_item.dart';
 import '../../shared/constants.dart';
 
 class ChainListScreen extends StatefulWidget {
@@ -17,13 +17,13 @@ class _AccountListScreenState extends State<ChainListScreen> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => AccountController()..getAccount(),
+      create: (context) => ChainController()..getChains(),
       child: _consumer(context),
     );
   }
 
   Widget _consumer(BuildContext context) {
-    return Consumer<AccountController>(
+    return Consumer<ChainController>(
       builder: (context, accountController, child) {
         this.accountController = accountController;
         return _scaffold(context);
@@ -45,7 +45,7 @@ class _AccountListScreenState extends State<ChainListScreen> {
   }
 
   Widget contentView (BuildContext context) {
-    return context.watch<AccountController>().isLoading
+    return context.watch<ChainController>().isLoading
         ? const CircularProgressIndicator()
         : Column(
       children: [
@@ -53,11 +53,11 @@ class _AccountListScreenState extends State<ChainListScreen> {
         ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: context.watch<AccountController>().listAccount.length,
+            itemCount: context.watch<ChainController>().listChains.length,
             itemBuilder: (context, index) {
-              return AccountItem(context
-                  .watch<AccountController>()
-                  .listAccount[index]);
+              return ChainItem(context
+                  .watch<ChainController>()
+                  .listChains[index]);
             }),
       ],
     );

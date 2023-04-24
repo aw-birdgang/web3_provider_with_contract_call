@@ -1,18 +1,22 @@
 import '../common/map_util.dart';
 
 class Chain {
-  String? balance = "0";
+  int? id = 1;
+  String? name = "0";
 
   Chain({
-    this.balance,
+    this.id,
+    this.name,
   });
 
   Map<String, dynamic> toMap() => {
-    "balance": balance,
+    "id": id,
+    "name": name,
   };
 
   Chain.fromJson(Map<String, dynamic> map) {
-    balance = getItemFromMapForStr(map, "balance");
+    id = getItemFromMapForInt(map, "id");
+    name = getItemFromMapForStr(map, "name");
   }
 
   @override

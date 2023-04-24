@@ -1,10 +1,11 @@
 import 'package:web3_example/pages/chain/chain_page.dart';
 import 'package:flutter/material.dart';
 
+import '../models/menu_model.dart';
 import '../screens/login/login_screen.dart';
 import 'auth_controller.dart';
 
-class MenuController extends ChangeNotifier {
+class SideMenuController extends ChangeNotifier {
   final AuthController? _authProvider;
 
   int currentSelectedIndex = 0;
@@ -40,25 +41,19 @@ class MenuController extends ChangeNotifier {
     }
   }
 
-  MenuController(this._authProvider) {
+  SideMenuController(this._authProvider) {
     buildMenu();
   }
 
   final _offline_screen = [const LoginScreen()];
 
   final _screens = [
-    const ClientPage(),
-    const AccountPage(),
-    const DepositPage(),
-    const TokenTransferPage(),
+    const ChainPage(),
   ];
 
   final _offline_screens_title = ['Login'];
   final _screens_title = [
-    '클라이언트 목록',
-    '계정 목록',
-    '입금 요청 목록',
-    '토큰 전송 목록',
+    '체인 목록',
   ];
 
   // final _screens_description = [
@@ -75,10 +70,7 @@ class MenuController extends ChangeNotifier {
 
   final List<MenuModel> _menuModelList = [
     // MenuModel("Dashboard", "assets/icons/menu_dashbord.svg", isselected: true),
-    MenuModel("Clients", "assets/icons/menu_task.svg"),
-    MenuModel("Accounts", "assets/icons/menu_store.svg"),
-    MenuModel("Deposits", "assets/icons/menu_profile.svg"),
-    MenuModel("TokenTransfer", "assets/icons/menu_tran.svg"),
+    MenuModel("Chains", "assets/icons/menu_task.svg"),
     // MenuModel("Logout", "assets/icons/menu_logout.svg"),
   ];
 

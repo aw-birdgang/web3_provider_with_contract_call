@@ -1,7 +1,4 @@
-import 'package:e_angel_game_admin_flutter/common/env.dart';
 import 'package:flutter/material.dart';
-import 'package:web3_example/controllers/menu_controller.dart';
-import 'package:web3_example/controllers/auth_controller.dart';
 import 'package:web3_example/models/menu_model.dart';
 import 'package:web3_example/shared/constants.dart';
 import 'package:web3_example/shared/responsive.dart';
@@ -9,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/env.dart';
+import '../../../controllers/side_menu_controller.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({
@@ -41,7 +39,7 @@ class SideMenu extends StatelessWidget {
               ),
             ),
           ),
-          Consumer<MenuController>(
+          Consumer<SideMenuController>(
             builder: (context, menuController, child) => DrawerListTile(listOfModel: menuController.menuModelList),
           )
         ],
@@ -70,7 +68,7 @@ class DrawerListTile extends StatelessWidget {
             selected: true,
             selectedColor: Colors.grey.shade400,
             onTap: () async {
-              context.read<MenuController>().onChangeSelectedMenu(i);
+              context.read<SideMenuController>().onChangeSelectedMenu(i);
               if (Responsive.isMobile(context) ||
                   Responsive.isBigMobile(context) ||
                   Responsive.isTablet(context)) Navigator.pop(context);

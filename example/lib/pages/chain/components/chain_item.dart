@@ -1,11 +1,10 @@
-import 'package:e_angel_game_admin_flutter/components/default_text_info_col.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
 import '../../../../shared/constants.dart';
-import '../../../models/account.dart';
+import '../../../components/default_text_info_col.dart';
 import '../../../models/chain.dart';
-import 'account_detail.dart';
+import 'chain_detail.dart';
 
 class ChainItem extends StatefulWidget {
   ChainItem(this.chain, {Key? key}) : super(key: key);
@@ -29,7 +28,7 @@ class _ChainItemState extends State<ChainItem> {
         borderRadius: BorderRadius.circular(8),
         onTap: () {
           print("WalletAccountItem > onTap ");
-          Navigator.push(context, MaterialPageRoute(builder: (context) => AccountDetail(widget.account)));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ChainDetail(widget.chain)));
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -43,20 +42,15 @@ class _ChainItemState extends State<ChainItem> {
   }
 
   Widget contentView () {
-    String address = widget.account.address!;
-    String allocatedUserId = widget.account.allocatedUserId!;
-    String privateKey = widget.account.privateKey!;
-    String publicKey = widget.account.publicKey!;
-    int childNumber = widget.account.childNumber!;
-    int isUse = widget.account.isUse!;
+    String name = widget.chain.name!;
+    int id = widget.chain.id!;
     return Padding(
       padding: const EdgeInsets.all(defaultPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          getTextInfoCol(context, "USER ID", allocatedUserId.toString()),
-          getTextInfoCol(context, "CHILD NUMBER", childNumber.toString()),
-          getTextInfoCol(context, "ADDRESS", address),
+          getTextInfoCol(context, "CHAIN ID", id.toString()),
+          getTextInfoCol(context, "CHAIN NAME", name.toString()),
         ],
       ),
     );

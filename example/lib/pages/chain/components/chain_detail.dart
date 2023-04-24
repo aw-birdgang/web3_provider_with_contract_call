@@ -80,21 +80,15 @@ class _ChainDetailState extends State<ChainDetail> {
   }
 
   Widget contentView () {
-    String address = widget.chain.address!;
-    String privateKey = widget.account.privateKey!;
-    String publicKey = widget.account.publicKey!;
-    int childNumber = widget.account.childNumber!;
-    int isUse = widget.account.isUse!;
+    String name = widget.chain.name!;
+    int id = widget.chain.id!;
     return Padding(
       padding: const EdgeInsets.all(defaultPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          getTextInfoCol(context, "CHILD NUMBER", childNumber.toString()),
-          getTextInfoCol(context, "ADDRESS", address),
-          getTextInfoCol(context, "PRIVATE KEY", privateKey),
-          getTextInfoCol(context, "PUBLIC KEY", publicKey),
-          getTextInfoCol(context, "ALLOCATED", (isUse == 1) ? "true" : "false"),
+          getTextInfoCol(context, "CHAIN NAME", name.toString()),
+          getTextInfoCol(context, "CHAIN ID", id.toString()),
         ],
       ),
     );
